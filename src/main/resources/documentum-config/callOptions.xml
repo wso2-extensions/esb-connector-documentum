@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="callOptions" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <filter regex="get" source="$ctx:httpMethod">
+            <then>
+                <filter regex="true" source="$ctx:callBlocking">
+                    <then>
+                        <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+                        <call blocking="true">
+                            <endpoint>
+                                <http method="get" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                    <else>
+                        <call>
+                            <endpoint>
+                                <http method="get" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </else>
+                </filter>
+            </then>
+            <else/>
+        </filter>
+        <!--for HTTP method POST-->
+        <filter regex="post" source="$ctx:httpMethod">
+            <then>
+                <filter regex="true" source="$ctx:callBlocking">
+                    <then>
+                        <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+                        <call blocking="true">
+                            <endpoint>
+                                <http method="post" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                    <else>
+                        <call>
+                            <endpoint>
+                                <http method="post" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </else>
+                </filter>
+            </then>
+            <else/>
+        </filter>
+        <!--for HTTP method DELETE-->
+        <filter regex="delete" source="$ctx:httpMethod">
+            <then>
+                <filter regex="true" source="$ctx:callBlocking">
+                    <then>
+                        <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+                        <call blocking="true">
+                            <endpoint>
+                                <http method="delete" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </then>
+                    <else>
+                        <call>
+                            <endpoint>
+                                <http method="delete" uri-template="{uri.var.callEndpointUri}">
+                                    <timeout>
+                                        <duration>{$ctx:timeout}</duration>
+                                        <responseAction>fault</responseAction>
+                                    </timeout>
+                                    <suspendOnFailure>
+                                        <errorCodes>-1</errorCodes>
+                                        <initialDuration>-1</initialDuration>
+                                        <progressionFactor>1.0</progressionFactor>
+                                    </suspendOnFailure>
+                                    <markForSuspension>
+                                        <errorCodes>-1</errorCodes>
+                                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                                    </markForSuspension>
+                                </http>
+                            </endpoint>
+                        </call>
+                    </else>
+                </filter>
+            </then>
+            <else/>
+        </filter>
+    </sequence>
+</template>

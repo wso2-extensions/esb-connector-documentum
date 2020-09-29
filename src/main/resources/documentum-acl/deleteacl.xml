@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="deleteacl" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="aclObjID"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="acls"/>
+        <property expression="$func:aclObjID" name="uri.var.ObjID" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.repo')" name="Documentum_Repo"/>
+            <property expression="get-property('uri.var.ObjID')" name="Documentum_State"/>
+        </log>
+        <property action="remove" name="*NO_ENTITY_BODY*" scope="axis2"/>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state,'/',$ctx:uri.var.ObjID)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="delete"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

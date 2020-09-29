@@ -1,0 +1,83 @@
+{
+  "connectorName": "documentum",
+  "operationName": "addcontenttodocument",
+  "title": "Add Content in Documentum",
+  "help": "<h1>add Content</h1> <b>The Add content operation adds the the attached file content in given object ID of Documentum .</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+		{
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Documentum"
+              ],
+             "defaultType": "connection.Documentum",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+			}
+			},
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "repo",
+                    "displayName": "Repository Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Valid Repository Name created in documentum"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "objectID",
+                    "displayName": "Document Object ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Object ID for the document to be updated"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "format",
+                    "displayName": "Format Type",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Type of the document to be updated"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwrite",
+                    "displayName": "Content Overwrite",
+                    "inputType": "booleanOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Enable true if content to be overwritten"
+                  }
+                }				
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

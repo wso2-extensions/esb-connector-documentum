@@ -1,0 +1,91 @@
+{
+  "connectorName": "documentum",
+  "connectionName": "Documentum",
+  "title": "Documentum Connection",
+  "help": "<h1>Documentum Connector</h1> <b>The documentum connector supports ICONN configurations for handling connections</b>",
+  "elements": [
+ {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "DOCUMENTUM_CONNECTION",
+        "required": "true",
+        "helpTip": "The name for the documentum connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "username",
+                    "displayName": "Username",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Username for documentum URL"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "password",
+                    "displayName": "Password",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Password for documentum URL"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "blocking",
+                    "displayName": "Set Call Blocking",
+                    "inputType": "booleanOrExpression",
+                    "defaultValue": "false",
+                    "required": "true",
+                    "helpTip": "To switch call Blocking while hitting URL"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "baseurl",
+                    "displayName": "Base URL",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Base URL for all documentum API call"
+                  }
+                },
+                                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "timeout",
+                    "displayName": "Connection Timeout",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Connection Timeout in Milli Seconds"
+                  }
+                }					
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

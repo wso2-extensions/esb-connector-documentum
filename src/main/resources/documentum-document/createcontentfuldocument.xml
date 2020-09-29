@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="createcontentfuldocument" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="objectID"/>
+    <parameter defaultValue="" isMandatory="false" name="format"/>
+    <parameter defaultValue="" isMandatory="false" name="count"/>
+    <parameter defaultValue="" isMandatory="false" name="primary"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="folders"/>
+        <property expression="$func:objectID" name="uri.var.objID" scope="default" type="STRING"/>
+        <property name="uri.var.operation" scope="default" type="STRING" value="documents"/>
+        <property expression="$func:format" name="uri.var.format" scope="default" type="STRING"/>
+        <property expression="$func:count" name="uri.var.count" scope="default" type="STRING"/>
+        <property expression="$func:primary" name="uri.var.allprmry" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.baseurl')" name="Docuementum_BaseURL"/>
+            <property expression="get-property('uri.var.repo')" name="Docuementum_Repository_Name"/>
+            <property expression="get-property('uri.var.objID')" name="Docuementum_FolderID_Value"/>
+            <property expression="get-property('uri.var.format')" name="Docuementum_Format_Type"/>
+            <property expression="get-property('uri.var.count')" name="Docuementum_Content_Count_Value"/>
+            <property expression="get-property('uri.var.allprmry')" name="Docuementum_All-Primary_Value"/>
+        </log>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state,'/',$ctx:uri.var.objID,'/',$ctx:uri.var.operation,'?content-count=',$ctx:uri.var.count,'&amp;all-primary=',$ctx:uri.var.allprmry,'&amp;format=',$ctx:uri.var.format)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="post"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

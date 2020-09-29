@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="init" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="username"/>
+    <parameter defaultValue="" isMandatory="false" name="password"/>
+    <parameter defaultValue="" isMandatory="false" name="blocking"/>
+    <parameter defaultValue="" isMandatory="false" name="baseurl"/>
+    <parameter defaultValue="" isMandatory="false" name="timeout"/>
+    <sequence>
+        <property expression="$func:username" name="username" scope="default" type="STRING"/>
+        <property expression="$func:password" name="password" scope="default" type="STRING"/>
+        <property expression="$func:blocking" name="callBlocking" scope="default" type="STRING"/>
+        <property expression="$func:baseurl" name="uri.var.baseurl" scope="default" type="STRING"/>
+        <property expression="$func:timeout" name="timeout" scope="default" type="STRING"/>
+        <property expression="fn:concat($ctx:username,':',$ctx:password)" name="auth" scope="default" type="STRING"/>
+        <header expression="fn:concat('Basic ', base64Encode($ctx:auth))" name="Authorization" scope="transport"/>
+        <!--  <property name="messageType" scope="axis2" type="STRING" value="application/vnd.emc.documentum+json"/>
+        <property name="Content-Type" scope="transport" type="STRING" value="application/vnd.emc.documentum+json"/>  -->
+    </sequence>
+</template>
