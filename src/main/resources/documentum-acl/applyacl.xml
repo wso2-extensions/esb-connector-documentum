@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="applyacl" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="objectID"/>
+    <parameter defaultValue="" isMandatory="false" name="aclname"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="objects"/>
+        <property expression="$func:objectID" name="uri.var.objID" scope="default" type="STRING"/>
+        <property expression="$func:aclname" name="uri.var.aclname" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.repo')" name="Documentum_Repo"/>
+            <property expression="get-property('uri.var.objID')" name="Documentum_ObjectID"/>
+            <property expression="get-property('uri.var.aclname')" name="Documentum_ACLname"/>
+        </log>
+        <payloadFactory media-type="json">
+            <format>{"properties":{"acl_name":"$1"}}</format>
+            <args>
+                <arg evaluator="xml" expression="$ctx:aclname"/>
+            </args>
+        </payloadFactory>
+        <log category="DEBUG" level="custom">
+            <property expression="$body/*" name="Documentum_ApplyACL"/>
+        </log>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state,'/',$ctx:uri.var.objID)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="post"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

@@ -1,0 +1,94 @@
+{
+  "connectorName": "documentum",
+  "operationName": "createcontentfuldocument",
+  "title": "Create Contentful Doc in Documentum",
+  "help": "<h1>Create Contentful Document</h1> <b>The Add content operation adds the the attached file content in given object ID of Documentum .</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+		{
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Documentum"
+              ],
+             "defaultType": "connection.Documentum",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+			}
+			},
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "repo",
+                    "displayName": "Repository Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Valid Repository Name created in documentum"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "objectID",
+                    "displayName": "Folder Object ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Folder Object ID for the document to be created"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "format",
+                    "displayName": "Format Type",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Type of the document to be created"
+                  }
+                },
+				{
+                  "type": "attribute",
+                  "value": {
+                    "name": "count",
+                    "displayName": "Content-Count Value",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Type of the document to be created"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "primary",
+                    "displayName": "Set All Primary",
+                    "inputType": "booleanOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Enable true if content to be overwritten"
+                  }
+                }				
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

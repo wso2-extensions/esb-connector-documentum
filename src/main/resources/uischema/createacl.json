@@ -1,0 +1,83 @@
+{
+  "connectorName": "documentum",
+  "operationName": "createacl",
+  "title": "Create ACL in Documentum",
+  "help": "<h1>Create ACL</h1> <b>The create ACL operation creates the given acl in security part of Documentum .</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+		{
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Documentum"
+              ],
+             "defaultType": "connection.Documentum",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+			}
+			},
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "repo",
+                    "displayName": "Repository Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Valid Repository Name created in documentum"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "objname",
+                    "displayName": "ACL Object Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "ACL Object name for the security to be created"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "desc",
+                    "displayName": "Description Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Description of the new ACL to be created"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "owner",
+                    "displayName": "Owner Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Owner Name to be applied for new ACL to be created"
+                  }
+                }				
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

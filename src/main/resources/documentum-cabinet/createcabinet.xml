@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="createcabinet" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="cabinetname"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="cabinets"/>
+        <property expression="$func:cabinetname" name="uri.var.newcabinet" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.baseurl')" name="Docuementum_BaseURL"/>
+            <property expression="get-property('uri.var.repo')" name="Docuementum_Repository_Name"/>
+            <property expression="get-property('uri.var.newcabinet')" name="Docuementum_New_Cabinet Name"/>
+        </log>
+        <payloadFactory media-type="json">
+            <format>{"properties":{"object_name":"$1"}}</format>
+            <args>
+                <arg evaluator="xml" expression="$ctx:uri.var.newcabinet"/>
+            </args>
+        </payloadFactory>
+        <log category="DEBUG" level="custom">
+            <property expression="$body/*" name="Docuementum_CreateCabinet"/>
+        </log>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="post"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

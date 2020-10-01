@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="getcabinets" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="cabinets"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.repo')" name="Docuementum_Repo"/>
+        </log>
+        <property action="remove" name="*NO_ENTITY_BODY*" scope="axis2"/>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="get"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

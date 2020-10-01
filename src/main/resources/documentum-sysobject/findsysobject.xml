@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="findsysobject" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="objectID"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="objects"/>
+        <property expression="$func:objectID" name="uri.var.objID" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.repo')" name="Docuementum_Repo"/>
+            <property expression="get-property('uri.var.objID')" name="Docuementum_ObjectID"/>
+        </log>
+        <property action="remove" name="*NO_ENTITY_BODY*" scope="axis2"/>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state,'/',$ctx:uri.var.objID)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="get"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

@@ -1,0 +1,61 @@
+{
+  "connectorName": "documentum",
+  "operationName": "deletefolder",
+  "title": "Delete Folder in Documentum",
+  "help": "<h1>Delete Folder</h1> <b>The Delete Folder operation deletes the folder in respective cabinet.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+		{
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Documentum"
+              ],
+             "defaultType": "connection.Documentum",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+			}
+			},
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "repo",
+                    "displayName": "Repository Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Valid Repository Name created in documentum"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "ObjectID",
+                    "displayName": "Objectcode ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Folder Object ID for the folder to be deleted"
+                  }
+                }				
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

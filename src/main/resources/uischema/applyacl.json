@@ -1,0 +1,72 @@
+{
+  "connectorName": "documentum",
+  "operationName": "applyacl",
+  "title": "Apply ACL in Documentum",
+  "help": "<h1>Apply ACL</h1> <b>The Apply ACL operation applies the given acl in particular object of Documentum .</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+		{
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "Documentum"
+              ],
+             "defaultType": "connection.Documentum",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+			}
+			},
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "repo",
+                    "displayName": "Repository Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Valid Repository Name created in documentum"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "objectID",
+                    "displayName": "Object ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Object name for the ACL to be applied"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "aclname",
+                    "displayName": "ACL Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Provide the ACL name to be applied"
+                  }
+                }				
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

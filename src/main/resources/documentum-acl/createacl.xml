@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="createacl" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter defaultValue="" isMandatory="false" name="repo"/>
+    <parameter defaultValue="" isMandatory="false" name="objname"/>
+    <parameter defaultValue="" isMandatory="false" name="desc"/>
+    <parameter defaultValue="" isMandatory="false" name="owner"/>
+    <sequence>
+        <property expression="$func:repo" name="uri.var.repo" scope="default" type="STRING"/>
+        <property name="uri.var.state" scope="default" type="STRING" value="acls"/>
+        <property expression="$func:objname" name="uri.var.obj" scope="default" type="STRING"/>
+        <property expression="$func:desc" name="uri.var.desc" scope="default" type="STRING"/>
+        <property expression="$func:owner" name="uri.var.owner" scope="default" type="STRING"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.repo')" name="Documentum_Repo"/>
+            <property expression="get-property('uri.var.obj')" name="Documentum_Object_name"/>
+            <property expression="get-property('uri.var.desc')" name="Documentum_Description"/>
+            <property expression="get-property('uri.var.owner')" name="Documentum_Owner_name"/>
+        </log>
+        <payloadFactory media-type="json">
+            <format>{"properties":{"object_name":"$1","description":"$2","owner_name":"$3"}}</format>
+            <args>
+                <arg evaluator="xml" expression="$ctx:uri.var.obj"/>
+                <arg evaluator="xml" expression="$ctx:uri.var.desc"/>
+                <arg evaluator="xml" expression="$ctx:uri.var.owner"/>
+            </args>
+        </payloadFactory>
+        <log category="DEBUG" level="custom">
+            <property expression="$body/*" name="Documentum_CreateACL"/>
+        </log>
+        <property expression="fn:concat($ctx:uri.var.baseurl,'/repositories/',$ctx:uri.var.repo,'/',$ctx:uri.var.state)" name="uri.var.callEndpointUri" scope="default" type="STRING"/>
+        <property name="httpMethod" scope="default" type="STRING" value="post"/>
+        <log category="DEBUG" level="custom">
+            <property expression="get-property('uri.var.callEndpointUri')" name="Documentum_URL"/>
+        </log>
+        <documentum.callOptions/>
+    </sequence>
+</template>

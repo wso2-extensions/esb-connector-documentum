@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+   WSO2 Inc. licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+<component name="documentum-document" type="synapse/template" >
+    <subComponents> 
+		<component name="createdocument" >
+	    		<file>createdocument.xml</file>
+	    		<description>Create Document For Documentum connector method</description>
+		</component>	
+		<component name="finddocuments" >
+	    		<file>finddocuments.xml</file>
+	    		<description>Find Document For Documentum connector method</description>
+		</component>		
+		<component name="deletedocument" >
+	    		<file>deletedocument.xml</file>
+	    		<description>Delete Document For Documentum connector method</description>
+		</component>
+		<component name="addcontenttodocument" >
+	    		<file>addcontenttodocument.xml</file>
+	    		<description>Add content to object For Documentum connector method</description>
+		</component>
+		<component name="createcontentfuldocument" >
+	    		<file>createcontentfuldocument.xml</file>
+	    		<description>Create and Add content to object For Documentum connector method</description>
+		</component>
+		<component name="getdocumentcontent" >
+	    		<file>getdocumentcontent.xml</file>
+	    		<description>Get Document content For Documentum connector method</description>
+		</component>
+    </subComponents>    
+</component>
