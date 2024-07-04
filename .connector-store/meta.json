@@ -6,15 +6,16 @@
     "description": "The best way to protect these important assets is to move them to a centralized content management system. Documentum is one of the software that does that all with help of REST API calls. This EI connector enables WSO2 EI to communicae with Documentum Content Management System. It is useful for integrations where you need to store and retrieve information of the enterprise. The Documentum Connector allows you to create folder, find folder, delete folder, create document, find document, delete document, create cabinets, find cabinet, delete cabinet, get cabinet, create acl,apply acl, delete acl, get all acls, get all version, get current version and delete all version action to be perform etc.",
     "status": "Active",
     "labels": [
-        "Application"
+        "CMS"
     ],
     "releases": [
         {
-            "tagName": "1.0.0",
+            "tagName": "v1.0.0",
             "products": [
                 "EI 7.1.0",
                 "EI 7.0.x"
-            ]
+            ],
+            "isHidden": false
         }
     ]
 }
